@@ -8,6 +8,4 @@ docker build -t df-experiments .
 
 cd ../
 
-docker container run -ti -v ~/df-experiments/results:/PPgSI/results  -v ~/df-experiments/workdir:/PPgSI/workdir df-
-
-experiments
+docker container run -ti -v ~/df-experiments/results:/PPgSI/results  -v ~/df-experiments/workdir:/PPgSI/workdir df-experiments
