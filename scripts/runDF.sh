@@ -59,7 +59,7 @@ echo -e "${RED} Copiando resultados ${NOCOLOR}"
 cp ba-dua.xml ba-dua.out defects4j.out /$RESULTS_DIR/$1/$2/
 
 echo -e "${GREEN} executando a jaguar${NOCOLOR}"
-java -javaagent:$BADUA_AGENT \
+(time java -javaagent:$BADUA_AGENT \
     -Dbadua.experimental.exception_handler=true \
     -cp $CLASSPATH:$JAGUAR_JAR:$BADUA_AGENT \
 	$JAGUAR_MAIN_CLASS \
@@ -67,7 +67,7 @@ java -javaagent:$BADUA_AGENT \
 	--classesDir $CLASSES_DIR \
 	--testsDir  $TESTS_DIR \
 	--tests $PROJECT_DIR/tests.all \
-	--logLevel "INFO" | tee $PROJECT_ROOT_DIR/$1/$2/jaguar.out
+	--logLevel "INFO")b | tee $PROJECT_ROOT_DIR/$1/$2/jaguar.out
 
 cp jaguar.out /$RESULTS_DIR/$1/$2/
 cp -r .jaguar/* /$RESULTS_DIR/$1/$2/
