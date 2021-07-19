@@ -67,7 +67,7 @@ echo -e "${GREEN} executando a jaguar${NOCOLOR}"
 	--classesDir $CLASSES_DIR \
 	--testsDir  $TESTS_DIR \
 	--tests $PROJECT_DIR/tests.all \
-	--logLevel "INFO")b | tee $PROJECT_ROOT_DIR/$1/$2/jaguar.out
+	--logLevel "INFO") | tee $PROJECT_ROOT_DIR/$1/$2/jaguar.out
 
 cp jaguar.out /$RESULTS_DIR/$1/$2/
 cp -r .jaguar/* /$RESULTS_DIR/$1/$2/
