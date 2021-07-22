@@ -15,7 +15,8 @@ export JAGUAR_JAR="/PPgSI/jaguar-df/target/jaguar-df-0.1-SNAPSHOT-jar-with-depen
 export JAGUAR_MAIN_CLASS="br.usp.each.saeg.jaguardf.cli.JaguarRunner"
 export LOG_LEVEL="TRACE"
 export OUTPUT_DIR="report/df"
-export JUNIT_JAR="/PPgSI/defects4j/major/lib/junit-4.11.jar"
+export JUNIT_JAR="/PPgSI/df-experiments/lib/junit-4.13.2.jar"
+export HAMCREST="/PPgSI/df-experiments/lib/hamcrest-core-1.3.jar"
 export JUNIT_CLASS="org.junit.runner.JUnitCore"
 
 echo -e "${YELLOW} Criando o diretório e baixando o código ${NOCOLOR}"
@@ -30,9 +31,6 @@ defects4j checkout -p $1 -v $2 -w $PROJECT_DIR
 echo -e "${YELLOW} Compilando o código ${NOCOLOR}"
 defects4j compile
 
-echo -e "${YELLOW} Testando o código ${NOCOLOR}"
-defects4j test > $PROJECT_ROOT_DIR/$1/$2/defects4j.out
-
 echo -e "${YELLOW} Exportando CLASSPATH e conjunto de testes ${NOCOLOR}"
 export CLASSPATH="$(defects4j export -p cp.test -w $PROJECT_DIR)"
 export TESTS="$(defects4j export -p tests.all -w $PROJECT_DIR | tr "\n" " " | awk '{$1=$1};1')"
@@ -40,9 +38,15 @@ export CLASSES_DIR="$(defects4j export -p dir.bin.classes -w $PROJECT_DIR)"
 export TESTS_DIR="$(defects4j export -p dir.bin.tests -w $PROJECT_DIR)"
 defects4j export -p tests.all -w $PROJECT_DIR > tests.all
 
+echo -e "${YELLOW} Testando o código com o jUnit ${NOCOLOR}"
+java -cp .:$JUNIT_JAR:$HAMCREST $JUNIT_CLASS $TESTS
+
+echo -e "${YELLOW} Testando o código ${NOCOLOR}"
+defects4j test > $PROJECT_ROOT_DIR/$1/$2/defects4j.out
+
 echo -e "${RED} Executando os testes com a Ba-dua${NOCOLOR}"
 java -javaagent:$BADUA_AGENT \
-			-cp $CLASSPATH:$JUNIT_JAR \
+			-cp $CLASSPATH:$JUNIT_JAR:$HAMCREST \
 			$JUNIT_CLASS $TESTS | tee $PROJECT_ROOT_DIR/$1/$2/ba-dua.out
 			
 echo -e "${RED} Gerando relatorio da Ba-dua ${NOCOLOR}"
