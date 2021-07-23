@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo -e "${YELLOW} Setting TZ variable in order to run Chart tests"
+export TZ=America/Los_Angeles
+
 readonly NOCOLOR="\033[0m"
 readonly GREEN="\033[0;32m"
 readonly RED="\033[0;31m"
