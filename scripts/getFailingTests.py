@@ -5,7 +5,21 @@ import os
 #path=sys.argv[1]
 #print path
 
-print "Failing Defects4J Tests"
+print "\nFailing jUNIT Tests"
+patternJUnit = re.compile("\d*\) test.*\)")
+
+try:
+    for i, line in enumerate(open('junit.out')):
+        for match in re.finditer(patternJUnit, line):
+            defect = match.group()
+            defect = defect.split(")")
+            defect = defect[1].split("(")
+            defect[0] = defect[0].replace(" ","")
+            print defect[1]+"::"+defect[0]
+except:
+    print "Failed to open junit.out"
+
+print "\nFailing Defects4J Tests"
 patternDefects = re.compile("  - .*")
 
 try:
@@ -18,7 +32,7 @@ except:
     print "Failed to open defects4j.out"
 
 print "\nFailing Ba-dua Tests"
-patternBadua = re.compile("\d*\).*\)")
+patternBadua = re.compile("\d*\) test.*\)")
 
 try:
     for i, line in enumerate(open('ba-dua.out')):
@@ -29,7 +43,7 @@ try:
             defect[0] = defect[0].replace(" ","")
             print defect[1]+"::"+defect[0]
 except:
-    print "Falied to open ba-dua.out"
+    print "Failed to open ba-dua.out"
     
 print "\nFailing Jaguar Tests"
 patternJaguar = re.compile(".*INFO  JaguarDF - Test .*Failed")
@@ -45,4 +59,4 @@ try:
 except:
     print "Failed to open jaguar.out"
 
-print "\n\n"
+print "\n"
