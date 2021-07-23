@@ -6,7 +6,7 @@ import os
 #print path
 
 print "\nFailing jUNIT Tests"
-patternJUnit = re.compile("\d*\) test.*\)")
+patternJUnit = re.compile("^\d{1,2}\) .*\)")
 
 try:
     for i, line in enumerate(open('junit.out')):
@@ -32,7 +32,7 @@ except:
     print "Failed to open defects4j.out"
 
 print "\nFailing Ba-dua Tests"
-patternBadua = re.compile("\d*\) test.*\)")
+patternBadua = re.compile("^\d{1,2}\) .*\)")
 
 try:
     for i, line in enumerate(open('ba-dua.out')):
