@@ -66,7 +66,7 @@ echo -e "\n${RED} Gerando relatorio da Ba-dua (pretty print) ${NOCOLOR}"
 xmllint --format $PROJECT_ROOT_DIR/$1/$2/ba-dua.xml --output $PROJECT_ROOT_DIR/$1/$2/ba-dua.xml
 rm coverage.ser
 echo -e "\n${RED} Copiando resultados ${NOCOLOR}"
-cp ba-dua.xml ba-dua.out defects4j.out /$RESULTS_DIR/$1/$2/
+cp ba-dua.xml ba-dua.out defects4j.out junit.out /$RESULTS_DIR/$1/$2/
 
 echo -e "\n${GREEN} Executando a jaguar${NOCOLOR}"
 (time java -javaagent:$BADUA_AGENT \
