@@ -52,6 +52,7 @@ defects4j test > $PROJECT_ROOT_DIR/$1/$2/defects4j.out
 
 echo -e "\n${RED} Executando os testes com a Ba-dua${NOCOLOR}"
 java -javaagent:$BADUA_AGENT \
+    			-Dbadua.experimental.exception_handler=true \
 			-cp $CLASSPATH:$JUNIT_JAR:$HAMCREST \
 			$JUNIT_CLASS $TESTS | tee $PROJECT_ROOT_DIR/$1/$2/ba-dua.out
 			
