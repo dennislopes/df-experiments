@@ -98,8 +98,8 @@ echo -e "\n${PURPLE} \n Gerando relatório de falhas (${BLUE}jUNIT ${YELLOW}Defe
 
 python /PPgSI/df-experiments/scripts/getFailingTests.py | tee $PROJECT_ROOT_DIR/$1/$2/FailingTests.out
 
-echo "######################################################" >> $RESULTS_DIR/MainReport.out
-echo "##### PROJETO.....: $1" >> $RESULTS_DIR/MainReport.out
-echo "##### VERSAO......: $2" >> $RESULTS_DIR/MainReport.out
-echo "######################################################" >> $RESULTS_DIR/MainReport.out
-cat $PROJECT_ROOT_DIR/$1/$2/FailingTests.out >> $RESULTS_DIR/MainReport.out
+echo "######################################################" >> $RESULTS_DIR/$1-MainReport.out
+echo "##### PROJETO.....: $1" >> $RESULTS_DIR/$1-MainReport.out
+echo "##### VERSAO......: $2" >> $RESULTS_DIR/$1-MainReport.out
+echo "######################################################" >> $RESULTS_DIR/$1-MainReport.out
+cat $PROJECT_ROOT_DIR/$1/$2/FailingTests.out >> $RESULTS_DIR/$1-MainReport.out
