@@ -73,22 +73,22 @@ except:
 
 print ("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 if jUnitDefects == defects4jDefects:
-    print ("jUnit OK")
+    print ("jUnit  OK")
 else:
-    print ("Inconsistencias no jUNIT")
+    print ("jUNIT  FAIL")
 
 if baduaDefects == defects4jDefects:
     print ("Ba-dua OK")
 else:
-    print ("Inconsistencias na Ba-dua")
+    print ("Ba-dua FAIL")
 
 if not jaguarDefects:
-    print ("Dados da Jaguar nao Coletados ou Defeitos nao encontrados")
+    print ("Jaguar data not available ERROR")
 else:
     if jaguarDefects == defects4jDefects:
         print ("Jaguar OK")
     else:
-        print ("Inconsistencias na Jaguar")
+        print ("Jaguar FAIL")
 print ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
 print "\n"
