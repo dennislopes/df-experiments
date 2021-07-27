@@ -83,7 +83,7 @@ else:
     print ("Ba-dua........................: FAIL")
 
 if not jaguarDefects:
-    print ("Jaguar data not available: ERROR")
+    print ("Jaguar data not available.....: ERROR")
 else:
     if jaguarDefects == defects4jDefects:
         print ("Jaguar........................: OK")
