@@ -42,7 +42,7 @@ export CLASSPATH="$(defects4j export -p cp.test -w $PROJECT_DIR)"
 export TESTS="$(defects4j export -p tests.all -w $PROJECT_DIR | tr "\n" " " | awk '{$1=$1};1')"
 export CLASSES_DIR="$(defects4j export -p dir.bin.classes -w $PROJECT_DIR)"
 export TESTS_DIR="$(defects4j export -p dir.bin.tests -w $PROJECT_DIR)"
-#defects4j export -p tests.all -w $PROJECT_DIR > tests.all
+defects4j export -p tests.all -w $PROJECT_DIR > tests.all
 
 echo -e "\n${BLUE} Testando o código com o jUnit ${NOCOLOR}"
 java -cp .:$CLASSPATH:$JUNIT_JAR:$HAMCREST $JUNIT_CLASS $TESTS | tee $PROJECT_ROOT_DIR/$1/$2/junit.out
