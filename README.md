@@ -16,8 +16,12 @@ This repository contains files and scripts used to carry out some dataflow fault
 
 ![createEnvironment.sh](/assets/createEnvironment.JPG "createEnvironment")
 
-- **generateRanking.sh**: generate the ochiai rankings for all defects4j project versions based on the coverage and subsumption files. Behind the scenes this script uses the *faultdetectv3.py* script (https://github.com/icst2021satool/probabilistic-coupling-experiment)
-
+- **generateRanking.sh**: generate the ochiai rankings for all defects4j project versions based on the coverage and subsumption files. Behind the scenes this script uses the *faultdetectv3.py* script (https://github.com/icst2021satool/probabilistic-coupling-experiment)  
+**Usage:**  
+*generateRanking.sh* <project_id>  
+**Example:**  
+*./generateRanking.sh* Csv  
+	- Files will be generated on the . folder
 - **get_buggy_lines.sh** (https://github.com/icst2021satool/probabilistic-coupling-experiment): script reused from the probabilistic-coupling-experiment that, for each defects4j project version, generate a file with the bug lines and the code snippet of this line  
 **Usage:**  
 *get_buggy_lines.sh* <project_id> <bug_id> <out_dir>  
