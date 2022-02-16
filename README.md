@@ -63,6 +63,7 @@ This repository contains files and scripts used to carry out some dataflow fault
 	Enter the range, project and directories information directly on notebook to get ranking calculated
 	
 ![generateDataflowRanking.sh](/assets/generateDataflowRanking.JPG "generateDataflowRanking")
+
 ---
 
 ### 3. Commits folder
