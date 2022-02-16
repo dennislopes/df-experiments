@@ -22,6 +22,7 @@ This repository contains files and scripts used to carry out some dataflow fault
 **Example:**  
 *./generateRanking.sh* Csv  
 	- Files will be generated on the . folder
+	- Coverage and Subsumption folders are expected to be on */PPgSI/df-experiments/dataflow* folder
 - **get_buggy_lines.sh** (https://github.com/icst2021satool/probabilistic-coupling-experiment): script reused from the probabilistic-coupling-experiment that, for each defects4j project version, generate a file with the bug lines and the code snippet of this line  
 **Usage:**  
 *get_buggy_lines.sh* <project_id> <bug_id> <out_dir>  
