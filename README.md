@@ -1,91 +1,115 @@
 # Data-flow Experiments
 
-This repository contains files and scripts used to carry out some dataflow fault localization experiments. The goal of that experiments is to assess fault localization effectivenesss of a complete set of DUAs against a set of uncontrained DUAs, that is, the minimal set of DUAs that guarantees the same coverage of the complete set. We aimed to have this research reproducible with the assets contained on this repository.
+This repository contains files and scripts used to carry out some dataflow fault localization experiments. The goal of that experiments is to assess fault localization effectivenesss of a complete set of DUAs against a set of uncontrained DUAs, that is, the minimal set of DUAs that guarantees the same coverage of the complete set. We aimed to have this research reproducible with the assets contained in this repository.
 
-# Scripts (Shell)
+---
 
-- cleanEnvironment.sh: remove the following directories:
-/PPgSI/workdir/*
-/PPgSI/results/*
-/PPgSI/df-experiments/classes
-/PPgSI/df-experiments/buggy_lines
+### 1. Shell Scripts
 
-- createEnvironment.sh: jaguar-df and ba-dua binaries environment configurator
+- **cleanEnvironment.sh**: remove the following directories from local environment
+	- /PPgSI/workdir/*
+	- /PPgSI/results/*
+	- /PPgSI/df-experiments/classes
+	- /PPgSI/df-experiments/buggy_lines
 
-- generateRanking.sh: generate the ochiai rankings for all defects4j project versions based on the coverage and subsumption files. Behind the scenes this script uses the faultdetectv3.py script (https://github.com/icst2021satool/probabilistic-coupling-experiment)
+- **createEnvironment.sh**: *jaguar-df* and *ba-dua* binaries environment configurator
 
-- get_buggy_lines.sh (https://github.com/icst2021satool/probabilistic-coupling-experiment): script reused from the probabilistic-coupling-experiment that, for each defects4j project version, generate a file with the bug lines and the code snippet of this line
-Usage: get_buggy_lines.sh <project_id> <bug_id> <out_dir>
-Example: ./get_buggy_lines.sh Csv 1b /PPgSI/df-experiments/buggyLines/Csv
+![createEnvironment.sh](/assets/createEnvironment.JPG "createEnvironment")
 
-- getFiles.sh: for each project version, get the relevant and modified source code files storing them on the classes folder. Additionaly generates the classes.modified and classes.relevant list of files
+- **generateRanking.sh**: generate the ochiai rankings for all defects4j project versions based on the coverage and subsumption files. Behind the scenes this script uses the *faultdetectv3.py* script (https://github.com/icst2021satool/probabilistic-coupling-experiment)
 
-- getAllProjectFiles.sh: Executes the get_buggy_lines.sh and getFiles.sh in order to collect relevant files to carry out the dataflow experiment
+- **get_buggy_lines.sh** (https://github.com/icst2021satool/probabilistic-coupling-experiment): script reused from the probabilistic-coupling-experiment that, for each defects4j project version, generate a file with the bug lines and the code snippet of this line  
+**Usage:**  
+*get_buggy_lines.sh* <project_id> <bug_id> <out_dir>  
+**Example:**  
+*./get_buggy_lines.sh* Csv 1b /PPgSI/df-experiments/buggyLines/Csv
 
-- runDf.sh: execute jUnit, ba-dua e jaguar tool for a specific version of a defects4j project and compare the results obtained for each of those tools
-Usage: runDF.sh <project_id> <version_id> <optional_experimental_parameters>
-Example: ./runDF.sh Csv 1b 
-optional_experimental_parameters: 
-1. classRuntimeTrue: activates the experimental parameter: -Dbadua.experimental.ModifiedSystemClassRuntime=true
-2. exceptionHandlerFalse: activates the experimental parameter: -Dbadua.experimental.exception_handler=false
-If no parameters are specified, the default one will be used (-Dbadua.experimental.exception_handler=true)
+- **getFiles.sh**: for each project version, get the relevant and modified source code files storing them on the classes folder. Additionaly generates the classes.modified and classes.relevant list of files
 
-- runValidation.sh: execute the runDF for all the versions of the specified project
-Usage: runValidation.sh <project_id> <optional_experimental_parameters>
-Example: ./runValidation.sh Csv 
-optional_experimental_parameters: 
-1. classRuntimeTrue: activates the experimental parameter: -Dbadua.experimental.ModifiedSystemClassRuntime=true
-2. exceptionHandlerFalse: activates the experimental parameter: -Dbadua.experimental.exception_handler=false
-If no parameters are specified, the default one will be used (-Dbadua.experimental.exception_handler=true)
+- **getAllProjectFiles.sh**: Executes the *get_buggy_lines.sh* and *getFiles.sh* in order to collect relevant files to carry out the dataflow experiment
 
-# Scripts (Python)
+- **runDf.sh**: execute jUnit, ba-dua e jaguar tool for a specific version of a defects4j project and compare the results obtained for each of those tools  
+**Usage:**    
+*runDF.sh* <project_id> <version_id> <optional_experimental_parameters>  
+**Example:**  
+*./runDF.sh Csv 1b*   
+**optional_experimental_parameters**:  
+	- *classRuntimeTrue*: activates the experimental parameter: *-Dbadua.experimental.ModifiedSystemClassRuntime=true*
+	- *exceptionHandlerFalse*: activates the experimental parameter: *-Dbadua.experimental.exception_handler=false*  
+	If no parameters are specified, the default one will be used (*-Dbadua.experimental.exception_handler=true*)
 
-faultdetectv3.py (https://github.com/icst2021satool/probabilistic-coupling-experiment): script reused from the probabilistic-coupling-experiment that, calculates the ochiai ranking for a specified project
-getFailingTests.py: script that compare the results from jUnit, ba-dua e jaguar-df in order to capture incosistencies among the results generated by those tools.
+- **runValidation.sh**: execute the runDF for all the versions of the specified project  
+**Usage:**  
+*runValidation.sh* <project_id> <optional_experimental_parameters>  
+**Example:**
+*./runValidation.sh* Csv   
+**optional_experimental_parameters**:  
+	- *classRuntimeTrue*: activates the experimental parameter: *-Dbadua.experimental.ModifiedSystemClassRuntime=true*
+	- *exceptionHandlerFalse*: activates the experimental parameter: *-Dbadua.experimental.exception_handler=false*  
+	If no parameters are specified, the default one will be used (*-Dbadua.experimental.exception_handler=true*)
 
-# Python Notebook (jupyter/generateDataflowRanking.ipynb)
+---
 
-generateDataflowRanking.ipynb: Jupyter Notebook that, based on the information collected by the Python Scripts, generate a csv file with detailed fault localization information for each version of specified project
+### 2. Python Scripts
 
-# Commits folder
+- **faultdetectv3.py** (https://github.com/icst2021satool/probabilistic-coupling-experiment): script reused from the probabilistic-coupling-experiment that, calculates the ochiai ranking for a specified project  
+- **getFailingTests.py**: script that compare the results from *jUnit*, *ba-dua* e *jaguar-df* in order to capture incosistencies among the results generated by those tools.
 
-This folder contains the compressed files of each of the relevant commits for ba-dua and jaguar-df
+---
 
-# Usage of experiment dockerfile
+### 2. Python Notebook (jupyter/generateDataflowRanking.ipynb)
 
-1. Install docker
-2. Clone the repository:
-git clone https://github.com/dennislopes/df-experiments.git
-3. Access the dockerfile directory:
-cd df-experiments/dockerfile/
-4. Build docker image
-docker build -t df-experiments .
-5. Mount a local directoy in order to store the container-produced artifacts
-cd ../
-docker container run -ti -v ~/df-experiments/results:/PPgSI/results  -v ~/df-experiments/workdir:/PPgSI/workdir df-experiments
-
-## Comand to execute a single test using jUnit:
-
-java -cp .:/PPgSI/workdir/lib/junit-4.13.2.jar:/PPgSI/workdir/lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore <tests>
-
-## Comand to execute all tests using jUnit:
-
-java -cp .:/PPgSI/df-experiments/lib/junit-4.13.2.jar:/PPgSI/df-experiments/lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore org.jfree.data.time.junit.WeekTests
-
-# Description of ba-dua/jaguar-df binaries available on the repository
-
-## 1. commit: e3d85d0
-
-- Versão original do Mario Concilio (Jaguar-DF/Ba-dua)
-
-## 2. commit: 60983f5
-
-- Exception handler desativado
-- Flag Powermock pode ser utilizada:
-	-Dbadua.experimental.ModifiedSystemClassRuntime=true
+- **generateDataflowRanking.ipynb**: Jupyter Notebook that, based on the information collected by the Python Scripts, generate a csv file with detailed fault localization information for each version of specified project
+	Enter the range, project and directories information directly on notebook to get ranking calculated
 	
-## 3. commit: 1abc38e
+![generateDataflowRanking.sh](/assets/generateDataflowRanking.JPG "generateDataflowRanking")
+---
 
-- Exception handler ativado
-- Flag Powermock pode ser utilizada:
-	-Dbadua.experimental.ModifiedSystemClassRuntime=true
+### 3. Commits folder
+
+	This folder contains the compressed files of each of the relevant commits for ba-dua and jaguar-df
+
+---
+
+### 4. Dockerfile
+
+- **Usage of experiment provided dockerfile**
+
+	1. Install docker
+	2. Clone the repository:
+	*git clone https://github.com/dennislopes/df-experiments.git*  
+	3. Access the dockerfile directory:  
+	*cd df-experiments/dockerfile/*  
+	4. Build docker image  
+	*docker build -t df-experiments .*  
+	5. Mount a local directoy in order to store the container-produced artifacts  
+	*cd ../*  
+	*docker container run -ti -v ~/df-experiments/results:/PPgSI/results  -v ~/df-experiments/workdir:/PPgSI/workdir df-experiments*  
+	
+---
+
+### 5. Comand to execute a single test using jUnit:
+
+	*java -cp .:/PPgSI/workdir/lib/junit-4.13.2.jar:/PPgSI/workdir/lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore <tests>*
+
+---
+
+### 6. Comand to execute all tests using jUnit:
+
+	*java -cp .:/PPgSI/df-experiments/lib/junit-4.13.2.jar:/PPgSI/df-experiments/lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore org.jfree.data.time.junit.WeekTests*
+
+---
+
+### 7. Description of ba-dua/jaguar-df binaries available on the repository
+
+- **1. commit: e3d85d0**
+	- Versão original do Mario Concilio (Jaguar-DF/Ba-dua)
+
+- **2. commit: 60983f5**
+	- Exception handler desativado
+	- Flag Powermock pode ser utilizada:
+		-Dbadua.experimental.ModifiedSystemClassRuntime=true
+- **3. commit: 1abc38e**
+	- Exception handler ativado
+	- Flag Powermock pode ser utilizada:
+		-Dbadua.experimental.ModifiedSystemClassRuntime=true
