@@ -23,7 +23,7 @@ WORKDIR /PPgSI
 # install ba-dua
 RUN git clone https://github.com/saeg/ba-dua.git
 WORKDIR /PPgSI/ba-dua
-RUN git checkout e3d85d0 && \
+RUN git checkout 60983f5 && \
 	mvn clean install
 
 WORKDIR /PPgSI
