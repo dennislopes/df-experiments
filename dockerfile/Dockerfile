@@ -4,11 +4,17 @@ RUN echo 'alias la="ls -lha"' >> ~/.bashrc
 
 RUN apt-get update && \
         apt-get install -y sloccount && \
+	apt-get install -y python3-pip python3-dev && \
+	apt-get install -y python3-venv && \
 	apt-get install -y python3-numpy && \
 	apt-get install -y maven && \
 	apt-get install -y build-essential && \
 	apt-get install -y libxml2-utils && \
     curl -L https://cpanmin.us | perl - App::cpanminus
+
+RUN pip3 install --upgrade pip
+RUN python3 -m venv /opt/venv
+RUN . /opt/venv/bin/activate && pip3 install jupyter
 
 WORKDIR /PPgSI
 
