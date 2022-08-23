@@ -90,7 +90,6 @@ This repository contains files and scripts used to carry out some dataflow fault
 	
 	6. (optional) Run Jupyter Notebooks
 	*docker network create uspnet*
-
 	*docker container run -ti -v ~/df-experiments/results:/PPgSI/results -v ~/df-experiments/workdir:/PPgSI/workdir -p 8888:8888 --network uspnet --name popeye df-experiments*
 	
 ---
