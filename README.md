@@ -12,10 +12,6 @@ This repository contains files and scripts used to carry out some dataflow fault
 	- /PPgSI/df-experiments/classes
 	- /PPgSI/df-experiments/buggy_lines
 
-- **createEnvironment.sh**: *jaguar-df* and *ba-dua* binaries environment configurator
-
-![createEnvironment.sh](/assets/createEnvironment.JPG "createEnvironment")
-
 - **generateRanking.sh**: generate the ochiai rankings for all defects4j project versions based on the coverage and subsumption files. Behind the scenes this script uses the *faultdetectv3.py* script (https://github.com/icst2021satool/probabilistic-coupling-experiment)  
 **Usage:**  
 *generateRanking.sh* <project_id>  
@@ -91,6 +87,10 @@ This repository contains files and scripts used to carry out some dataflow fault
 	5. Mount a local directoy in order to store the container-produced artifacts  
 	*cd ../*  
 	*docker container run -ti -v ~/df-experiments/results:/PPgSI/results  -v ~/df-experiments/workdir:/PPgSI/workdir df-experiments*  
+	
+	(optional) Run Jupyter Notebooks
+	a. docker network create uspnet
+	b. docker container run -ti -v ~/df-experiments/results:/PPgSI/results -v ~/df-experiments/workdir:/PPgSI/workdir -p 8888:8888 --network uspnet --name popeye df-experiments
 	
 ---
 
