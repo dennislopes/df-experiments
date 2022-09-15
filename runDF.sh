@@ -113,7 +113,7 @@ cp ba-dua_jaguar.xml /$RESULTS_DIR/$1/$2/
 
 echo -e "\n${PURPLE} \n Gerando relatório de falhas (${BLUE}jUNIT ${YELLOW}Defects4J ${RED}Ba-dua ${GREEN}Jaguar${NOCOLOR})"
 
-python /PPgSI/df-experiments/getFailingTests.py | tee $PROJECT_ROOT_DIR/$1/$2/FailingTests.out
+python3 /PPgSI/df-experiments/getFailingTests.py | tee $PROJECT_ROOT_DIR/$1/$2/FailingTests.out
 
 echo "######################################################" >> $RESULTS_DIR/$1-MainReport.out
 echo "##### PROJETO.....: $1" >> $RESULTS_DIR/$1-MainReport.out
