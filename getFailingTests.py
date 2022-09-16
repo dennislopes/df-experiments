@@ -2,10 +2,7 @@ import re
 import sys
 import os
 
-#path=sys.argv[1]
-#print path
-
-print "\nFailing jUNIT Tests"
+print ("\nFailing jUNIT Tests")
 patternJUnit = re.compile("^\d{1,2}\) .*\)")
 jUnitDefects = []
 
@@ -16,13 +13,13 @@ try:
             defect = defect.split(")")
             defect = defect[1].split("(")
             defect[0] = defect[0].replace(" ","")
-            print defect[1]+"::"+defect[0]
+            print (defect[1]+"::"+defect[0])
             jUnitDefects.append(defect[1]+"::"+defect[0])
             jUnitDefects.sort()
 except:
-    print "Failed to open junit.out"
+    print ("Failed to open junit.out")
 
-print "\nFailing Defects4J Tests"
+print ("\nFailing Defects4J Tests")
 patternDefects = re.compile("  - .*")
 defects4jDefects = []
 
@@ -31,13 +28,13 @@ try:
         for match in re.finditer(patternDefects, line):
             defect = match.group()
             defect = defect.replace("  - ","")
-            print defect
+            print (defect)
             defects4jDefects.append(defect)
             defects4jDefects.sort()
 except:
-    print "Failed to open defects4j.out"
+    print ("Failed to open defects4j.out")
 
-print "\nFailing Ba-dua Tests"
+print ("\nFailing Ba-dua Tests")
 patternBadua = re.compile("^\d{1,2}\) .*\)")
 baduaDefects = []
 
@@ -48,13 +45,13 @@ try:
             defect = defect.split(")")
             defect = defect[1].split("(")
             defect[0] = defect[0].replace(" ","")
-            print defect[1]+"::"+defect[0]
+            print (defect[1]+"::"+defect[0])
             baduaDefects.append(defect[1]+"::"+defect[0])
             baduaDefects.sort()
 except:
-    print "Failed to open ba-dua.out"
+    print ("Failed to open ba-dua.out")
     
-print "\nFailing Jaguar Tests"
+print ("\nFailing Jaguar Tests")
 patternJaguar = re.compile(".*INFO  JaguarDF - Test .*Failed")
 jaguarDefects = []
 
@@ -65,11 +62,11 @@ try:
            defect = defect.split("(")
            testcase  = defect[1].split(")")
            test = defect[0].split("- Test ")
-           print testcase[0]+"::"+test[1]
+           print (testcase[0]+"::"+test[1])
            jaguarDefects.append(testcase[0]+"::"+test[1])
            jaguarDefects.sort()
 except:
-    print "Failed to open jaguar.out"
+    print ("Failed to open jaguar.out")
 
 print ("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 if jUnitDefects == defects4jDefects:
@@ -91,4 +88,4 @@ else:
         print ("Jaguar........................: FAIL")
 print ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
-print "\n"
+print ("\n")
