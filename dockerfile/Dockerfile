@@ -12,9 +12,9 @@ RUN apt-get update && \
 	apt-get install -y libxml2-utils && \
     curl -L https://cpanmin.us | perl - App::cpanminus
 
-RUN pip3 install --upgrade pip
-RUN python3 -m venv /opt/venv
-RUN . /opt/venv/bin/activate && pip3 install jupyter
+# RUN pip3 install --upgrade pip
+# RUN python3 -m venv /opt/venv
+# RUN . /opt/venv/bin/activate && pip3 install jupyter
 
 WORKDIR /PPgSI
 
